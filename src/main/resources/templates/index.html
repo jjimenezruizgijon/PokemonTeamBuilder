@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Constructor de Equipos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script>
+   
+        function validarCheckboxes(checkbox) {
+            var marcados = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            if (marcados > 6) { alert("¡Máximo 6 Pokémon!"); checkbox.checked = false; }
+        }
+        function filtrarPorTipo() {
+            var tipoSeleccionado = document.getElementById("filtroTipo").value;
+            var cartas = document.querySelectorAll(".card-pokemon");
+            for (var i = 0; i < cartas.length; i++) {
+                var tiposDeCarta = cartas[i].getAttribute("data-tipos");
+                if (tipoSeleccionado === "Todos" || tiposDeCarta.includes(tipoSeleccionado)) {
+                    cartas[i].style.display = "block";
+                } else { cartas[i].style.display = "none"; }
+            }
+        }
+        function ordenarPokemon() {
+             var criterio = document.getElementById("ordenarPor").value;
+             var contenedor = document.getElementById("gridContenedor");
+             var cartas = Array.from(contenedor.getElementsByClassName("card-pokemon"));
+             cartas.sort(function(a, b) {
+                 if (criterio === "id") { return parseInt(a.getAttribute("data-id")) - parseInt(b.getAttribute("data-id")); }
+                 else { return a.querySelector("h3").innerText.localeCompare(b.querySelector("h3").innerText); }
+             });
+             for (var i = 0; i < cartas.length; i++) { contenedor.appendChild(cartas[i]); }
+        }
+    </script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">POKEBUILDER</div>
+        <div class="nav-links">
+            <a th:href="@{/generaciones}">Cambiar Región</a>
+            <a th:href="@{/mis-equipos}">Mis Equipos</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <form th:action="@{/guardar-equipo}" method="post">
+            
+            <div class="panel-control" style="max-width: 900px;">
+                <h2 style="text-align: center; margin-bottom: 15px;">Constructor de Equipo</h2>
+                
+                 <div th:if="${param.error}" style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 15px; text-align: center;">
+                    El equipo debe tener entre 1 y 6 Pokémon.
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="text" name="nombreEquipo" placeholder="Nombre del Equipo..." required style="flex: 2;">
+                    <button type="submit" class="btn" style="flex: 1;">Guardar Equipo</button>
+                </div>
+
+                <div style="display: flex; gap: 15px; background: #f8f9fa; padding: 15px; border-radius: 8px; align-items: center; border: 1px solid #eee;">
+                    <span style="font-weight: bold; color: #555;">Filtrar Tipo:</span>
+                    <select id="filtroTipo" onchange="filtrarPorTipo()" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <option value="Todos">Todos</option>
+                        <option value="Fuego">Fuego</option>
+                        <option value="Agua">Agua</option>
+                        <option value="Planta">Planta</option>
+                        <option value="Electrico">Eléctrico</option>
+                        <option value="Psiquico">Psíquico</option>
+                        <option value="Roca">Roca</option>
+                        <option value="Tierra">Tierra</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Veneno">Veneno</option>
+                        <option value="Bicho">Bicho</option>
+                        <option value="Lucha">Lucha</option>
+                        <option value="Fantasma">Fantasma</option>
+                        <option value="Dragon">Dragón</option>
+                        <option value="Hada">Hada</option>
+                        <option value="Hielo">Hielo</option>
+                         <option value="Volador">Volador</option>
+                         <option value="Acero">Acero</option>
+                    </select>
+
+                    <span style="margin-left: auto; font-weight: bold; color: #555;">Ordenar por:</span>
+                    <select id="ordenarPor" onchange="ordenarPokemon()" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                        <option value="id">Número Pokédex</option>
+                        <option value="nombre">Nombre (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="gridContenedor" class="grid-pokemon">
+                <div class="card card-pokemon" 
+                     th:each="pokemon : ${misPokemons}" 
+                     th:data-id="${pokemon.id}" 
+                     th:data-tipos="${pokemon.tipo1} + ' ' + ${pokemon.tipo2}">
+                    
+                    <input type="checkbox" name="idPokemons" th:value="${pokemon.id}" onclick="validarCheckboxes(this)">
+                    
+                    <div style="font-size: 0.8em; color: gray; text-align: left; margin-left: 5px; font-weight: bold;" th:text="'#' + ${pokemon.id}">#1</div>
+                    <img th:src="${pokemon.imagenUrl}" loading="lazy"> <h3 th:text="${pokemon.nombre}">Nombre</h3>
+                    
+                    <div class="tipos-container">
+                        <span th:class="'tipo ' + ${pokemon.tipo1}" th:text="${pokemon.tipo1}"></span>
+                        <span th:if="${pokemon.tipo2 != null}" th:class="'tipo ' + ${pokemon.tipo2}" th:text="${pokemon.tipo2}"></span>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>

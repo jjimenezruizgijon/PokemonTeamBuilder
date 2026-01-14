@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: pokemon_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: pokemondb
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3307:3306" 
+
+  app:
+    build: .
+    container_name: pokemon_app
+    depends_on:
+      - mysqldb
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/pokemondb?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update

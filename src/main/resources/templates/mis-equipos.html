@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Equipos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        
+        .equipos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+        .equipo-card {
+            border-left: 5px solid #EE1515; 
+            transition: transform 0.2s;
+        }
+        .equipo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">POKEBUILDER</div>
+        <div class="nav-links">
+            <a th:href="@{/generaciones}">Crear Nuevo</a>
+            <a th:href="@{/logout}">Cerrar Sesión</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px;">
+            <h2>Mis Equipos</h2>
+            <span style="color: gray;">Entrenador: <strong th:text="${session.entrenadorLogueado.nombreUsuario}">User</strong></span>
+        </div>
+
+        <div th:if="${#lists.isEmpty(misEquipos)}" style="text-align: center; padding: 50px;">
+            <h3 style="color: #999;">No tienes equipos. ¡Ve a crear uno!</h3>
+        </div>
+
+        <div class="equipos-grid">
+            <div class="equipo-card" th:each="equipo : ${misEquipos}">
+                <div class="equipo-header">
+                    <h3 th:text="${equipo.nombreEquipo}" style="margin:0;">Nombre</h3>
+                    <a th:href="@{/borrar-equipo(id=${equipo.id})}" class="btn-danger" style="padding: 5px 10px; font-size: 0.8em; text-decoration: none; color: white; border-radius: 4px;" onclick="return confirm('¿Borrar?')">Borrar</a>
+                </div>
+                
+                <div class="equipo-body">
+                    <div class="lista-pokemon-row">
+                        <div class="mini-poke" th:each="p : ${equipo.pokemons}">
+                            <img th:src="${p.imagenUrl}" th:title="${p.nombre}">
+                        </div>
+                    </div>
+
+                    <div class="analisis-box" style="margin-top: 15px;">
+                        <ul style="padding-left: 15px; margin: 0;">
+                            <li th:each="msg : ${analisisMap.get(equipo.id)}" th:text="${msg}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

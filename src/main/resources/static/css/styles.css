@@ -1,0 +1,226 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.navbar {
+    background-color: #cc0000;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.panel-control {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3366cc;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #254b96;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.grid-pokemon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 140px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    background-color: #f9f9f9;
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+}
+
+.card h3 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.card input[type="checkbox"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transform: scale(1.2);
+}
+
+.tipo {
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 1px;
+}
+
+.Fuego { background-color: orange; }
+.Agua { background-color: dodgerblue; }
+.Planta { background-color: limegreen; }
+.Electrico { background-color: gold; color: black; }
+.Veneno { background-color: purple; }
+.Volador { background-color: mediumpurple; }
+.Bicho { background-color: olive; }
+.Normal { background-color: gray; }
+.Tierra { background-color: sienna; }
+.Hada { background-color: hotpink; }
+.Roca { background-color: darkgoldenrod; }
+.Lucha { background-color: firebrick; }
+.Psiquico { background-color: deeppink; }
+.Fantasma { background-color: indigo; }
+.Hielo { background-color: lightcyan; color: black; }
+.Dragon { background-color: rebeccapurple; }
+.Acero { background-color: silver; color: black; }
+
+.equipo-card {
+    background: white;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.equipo-header {
+    background-color: #f8f9fa;
+    padding: 15px 25px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.equipo-body {
+    padding: 25px;
+}
+
+.lista-pokemon-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.mini-poke {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.mini-poke img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+
+.mini-poke span {
+    display: block;
+    font-size: 11px;
+}
+
+.analisis-box {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    font-size: 12px;
+    text-align: left;
+}
+
+.btn-hero {
+    display: inline-block;
+    background-color: #cc0000;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-hero:hover {
+    background-color: #a30000;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.login-panel-content {
+    text-align: center;
+    padding: 3rem 2rem;
+}

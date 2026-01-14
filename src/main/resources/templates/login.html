@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión | PokeBuilder</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+    <div class="container login-container">
+        <div class="panel-control" style="max-width: 450px; margin: 0;">
+            <div class="login-panel-content">
+                <h1 style="color: var(--primary-red); margin-bottom: 10px; font-weight: 800; letter-spacing: -1px;">POKEBUILDER</h1>
+                <p style="margin-bottom: 30px; color: #666; font-size: 1.1rem;">Tu estrategia comienza aquí</p>
+                
+                <div th:if="${error}" style="background: #fde8e8; color: var(--primary-dark); padding: 15px; border-radius: 6px; margin-bottom: 25px; border-left: 4px solid var(--primary-red);" th:text="${error}"></div>
+
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <input type="text" name="username" placeholder="Nombre de Entrenador" required style="padding: 15px; background: #f9f9f9;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <input type="password" name="password" placeholder="Contraseña" required style="padding: 15px; background: #f9f9f9;">
+                    </div>
+                    <button type="submit" class="btn btn-block" style="padding: 15px; font-size: 1.1rem;">Acceder / Registrarse</button>
+                </form>
+                
+                <p style="font-size: 0.85rem; margin-top: 30px; color: #aaa; border-top: 1px solid #eee; padding-top: 20px;">
+                    Si el usuario no existe, se creará automáticamente al intentar entrar.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

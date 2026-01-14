@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecciona Región</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body style="text-align:center;">
+
+    <nav class="navbar">
+        <div class="brand">POKEBUILDER</div>
+        <div class="nav-links">
+            <span class="user-info" style="color: rgba(255,255,255,0.8);">Hola, <strong style="color: white;" th:text="${session.entrenadorLogueado.nombreUsuario}">User</strong></span>
+            <a th:href="@{/mis-equipos}">Mis Equipos</a>
+            <a th:href="@{/logout}" class="btn-logout">Salir</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="margin-top: 60px; margin-bottom: 40px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Selecciona una Región</h1>
+            <p style="color: #666; font-size: 1.1rem;">Elige los Pokémon disponibles para tu equipo</p>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 40px;">
+            
+            <div class="card" style="width: 350px; padding: 40px 30px; cursor: default; border-top: 5px solid var(--primary-red);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png" 
+                     style="width: 180px; height: auto; margin-bottom: 25px;">
+                <h2 style="font-size: 2rem; margin-bottom: 5px;">Entrar</h2>
+                <p style="font-weight: bold; color: var(--accent-blue); margin-bottom: 5px;">Generación 1</p>
+                <p style="color: gray; margin-bottom: 30px;">151</p>
+                
+                <a th:href="@{/builder/gen1}" class="btn btn-hero" style="display: block; text-decoration: none;">
+                    Kanto
+                </a>
+            </div>
+
+            </div>
+    </div>
+</body>
+</html>
